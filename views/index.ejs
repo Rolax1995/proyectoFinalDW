@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>LaboratorioFinal</title>
+</head>
+<body>
+    <div class="row justify-content-center">
+        <form class="col-8 card mt-3" action="/save" method="POST">
+          <div class="row card-header">
+              <div class="col-8">
+                <h1>NUEVA TAREA</h1>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="nombreTarea" class="form-label">Nombre Tarea</label>
+            <input type="text" class="form-control" name="nombreTarea" id="nombreTarea">
+          </div>
+          <div class="mb-3">
+            <label for="punteoTarea" class="form-label">Punteo Tarea</label>
+            <input type="text" class="form-control" name="punteoTarea" id="punteoTarea">
+          </div>
+          <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </form>
+        <div class="col-8 card mt-3">
+            <div class="row card-header">
+                <div class="col-8">
+                  <h1>MIS TAREAS</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-boardere table-striped text-center mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Terminada</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% data.forEach((tarea)=>{%>
+                        <tr>
+                          <td><%= tarea.idTarea%></td>
+                          <td><%= tarea.nombre%></td>
+                          <td><%= tarea.punteo%></td>
+                          <td>
+                            <% if (tarea.finish) {%>
+                                <input tarea="<%= tarea.idTarea%>" type="checkbox" checked>
+                              <% } else {%>
+                                <input tarea="<%= tarea.idTarea%>" type="checkbox">
+                              <% } %>
+                          </td>
+                          <td><a href="/delete/<%= tarea.idTarea%>" class="btn btn-outline-danger">borrar</a></td>
+                        </tr>
+                      <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="./js/index.js"></script>
+<script src="./js/bootstrap.bundle.min.js"></script>
+</html>
